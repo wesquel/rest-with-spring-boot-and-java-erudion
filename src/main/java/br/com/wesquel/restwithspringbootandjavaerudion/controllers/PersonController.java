@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.wesquel.restwithspringbootandjavaerudion.model.Person;
+import br.com.wesquel.restwithspringbootandjavaerudion.data.vo.v1.PersonVO;
 import br.com.wesquel.restwithspringbootandjavaerudion.services.PersonServices;
 
 @RestController
@@ -25,7 +25,7 @@ public class PersonController {
     private PersonServices personServices;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         return personServices.findAll();
     }
 
@@ -33,7 +33,7 @@ public class PersonController {
         value = "/{id}", 
         produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Person findById(@PathVariable(value = "id") Long id) {
+    public PersonVO findById(@PathVariable(value = "id") Long id) {
         return personServices.findById(id);
     }
 
@@ -41,7 +41,7 @@ public class PersonController {
         produces = MediaType.APPLICATION_JSON_VALUE, 
         consumes = MediaType.APPLICATION_JSON_VALUE
         )
-    public Person create(@RequestBody Person person) throws Exception{
+    public PersonVO create(@RequestBody PersonVO person) throws Exception{
         return personServices.create(person);
     }
 
@@ -49,7 +49,7 @@ public class PersonController {
         produces = MediaType.APPLICATION_JSON_VALUE, 
         consumes = MediaType.APPLICATION_JSON_VALUE
         )
-    public Person update(@RequestBody Person person) throws Exception{
+    public PersonVO update(@RequestBody PersonVO person) throws Exception{
         return personServices.update(person);
     }
 
