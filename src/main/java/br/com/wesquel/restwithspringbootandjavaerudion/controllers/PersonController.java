@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.wesquel.restwithspringbootandjavaerudion.data.vo.v1.PersonVO;
+import br.com.wesquel.restwithspringbootandjavaerudion.data.vo.v2.PersonVOV2;
 import br.com.wesquel.restwithspringbootandjavaerudion.services.PersonServices;
 
 @RestController
@@ -44,6 +45,16 @@ public class PersonController {
     public PersonVO create(@RequestBody PersonVO person) throws Exception{
         return personServices.create(person);
     }
+
+    @PostMapping(
+        value = "/v2",
+        produces = MediaType.APPLICATION_JSON_VALUE, 
+        consumes = MediaType.APPLICATION_JSON_VALUE
+        )
+    public PersonVOV2 createV2(@RequestBody PersonVOV2 person) throws Exception{
+        return personServices.createV2(person);
+    }
+
 
     @PutMapping(
         produces = MediaType.APPLICATION_JSON_VALUE, 
