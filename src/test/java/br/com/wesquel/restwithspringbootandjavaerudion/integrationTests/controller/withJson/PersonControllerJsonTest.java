@@ -61,6 +61,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
             .spec(specification)   
             .contentType(TestConfigs.CONTENT_TYPE_JSON)
             .body(person)
+            .port(8080)
             .when()
             .post()
             .then()
@@ -68,7 +69,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
             .extract()
             .body()
             .asString()
-            ;
+        ;
         PersonVO createdPerson = objectMapper.readValue(content, PersonVO.class);
         person = createdPerson;
         assertNotNull(createdPerson);
