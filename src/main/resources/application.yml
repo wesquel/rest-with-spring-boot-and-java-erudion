@@ -15,7 +15,7 @@ spring:
             show-sql: false
     output:
         ansi:
-            enable: ALWAYS
+            enabled: ALWAYS
 spring-doc:
     pathsToMatch: /api/**/v1/**
     swagger-ui:
