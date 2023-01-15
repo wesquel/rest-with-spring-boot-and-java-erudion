@@ -1,20 +1,11 @@
-package br.com.wesquel.restwithspringbootandjavaerudion.data.vo.v1;
+package br.com.wesquel.restwithspringbootandjavaerudion.integrationTests.vo;
 
 import java.io.Serializable;
 
-import org.springframework.hateoas.RepresentationModel;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.github.dozermapper.core.Mapping;
-
-@JsonPropertyOrder({"id", "fistName", "lastName", "address", "gender"})
-public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
+public class PersonVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Mapping("id")
-    @JsonProperty("id")
-    private Long key;
+    private Long id;
     private String firstName;
     private String lastName;
     private String address;
@@ -24,12 +15,12 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
 
     }
 
-    public Long getKey() {
-        return key;
+    public Long getId() {
+        return id;
     }
 
-    public void setKey(Long key) {
-        this.key = key;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -67,8 +58,8 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + ((key == null) ? 0 : key.hashCode());
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
         result = prime * result + ((address == null) ? 0 : address.hashCode());
@@ -80,15 +71,15 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!super.equals(obj))
+        if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
         PersonVO other = (PersonVO) obj;
-        if (key == null) {
-            if (other.key != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!key.equals(other.key))
+        } else if (!id.equals(other.id))
             return false;
         if (firstName == null) {
             if (other.firstName != null)
@@ -111,9 +102,7 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
         } else if (!gender.equals(other.gender))
             return false;
         return true;
-    }
-
-    
+    }    
 
     
 }
