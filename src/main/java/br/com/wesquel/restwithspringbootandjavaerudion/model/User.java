@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,7 +21,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails,Serializable{
+public class User implements UserDetails, Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -68,16 +67,16 @@ public class User implements UserDetails,Serializable{
 
     public List<String> getRoles() {
         List<String> roles = new ArrayList<>();
-        for (Permission permission : permissions){
-            roles.add(permission.getDescription());
-        }
+        for (Permission permission : permissions) {
+			roles.add(permission.getDescription());
+		}
         return roles;
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.permissions;
-    }
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.permissions;
+	}
 
     @Override
     public String getUsername() {
@@ -91,17 +90,17 @@ public class User implements UserDetails,Serializable{
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.isAccountNonExpired();
+        return this.accountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.isAccountNonLocked();
+        return this.accountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.isCredentialsNonExpired();
+        return this.credentialsNonExpired;
     }
 
     @Override

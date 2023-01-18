@@ -9,6 +9,6 @@ import br.com.wesquel.restwithspringbootandjavaerudion.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query("SELECT u FROM User WHERE u.userName =:userName")
-    User findByUsername(@Param("userName") String userName);
+    @Query("SELECT u FROM User u WHERE u.userName = :userName")
+	User findByUsername(@Param("userName") String userName);
 }
