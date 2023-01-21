@@ -10,9 +10,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import br.com.wesquel.restwithspringbootandjavaerudion.controllers.PersonController;
 import br.com.wesquel.restwithspringbootandjavaerudion.data.vo.v1.PersonVO;
-import br.com.wesquel.restwithspringbootandjavaerudion.exceptions.RequiredObjectIsNullException;
+import br.com.wesquel.restwithspringbootandjavaerudion.data.vo.v2.PersonVOV2;
 import br.com.wesquel.restwithspringbootandjavaerudion.exceptions.ResourceNotFoundException;
 import br.com.wesquel.restwithspringbootandjavaerudion.mapper.DozerMapper;
+import br.com.wesquel.restwithspringbootandjavaerudion.mapper.custom.PersonMapper;
 import br.com.wesquel.restwithspringbootandjavaerudion.model.Person;
 import br.com.wesquel.restwithspringbootandjavaerudion.repository.PersonRepository;
 
@@ -23,6 +24,9 @@ public class PersonServices {
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    PersonMapper personMapper;
 
     public List<PersonVO> findAll(){
         logger.info("Finding all people!");
@@ -64,6 +68,14 @@ public class PersonServices {
         );
         return vo;
     }
+
+    public PersonVOV2 createV2(PersonVOV2 personVOV2) {
+        logger.info("Creating one person with V2!");
+        var entity = personMapper.convertVoToEntity(personVOV2);    
+        var vo = personMapper.convertEntityToVo(personRepository.save(entity));
+        return vo;
+    }
+
 
     public PersonVO update(PersonVO personVo) {
         if(personVo == null) throw new RequiredObjectIsNullException();
