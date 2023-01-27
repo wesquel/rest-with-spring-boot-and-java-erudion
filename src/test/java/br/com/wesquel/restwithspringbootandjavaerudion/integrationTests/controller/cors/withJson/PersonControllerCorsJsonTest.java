@@ -70,7 +70,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 		specification = new RequestSpecBuilder()
 			.addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + accessToken)
 			.setBasePath("/api/person/v1")
-			.setPort(TestConfigs.SERVER_PORT)
+			.setPort(8080)
 			.addFilter(new RequestLoggingFilter(LogDetail.ALL))
 			.addFilter(new ResponseLoggingFilter(LogDetail.ALL))
 			.build();
@@ -86,7 +86,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 			.contentType(TestConfigs.CONTENT_TYPE_JSON)
 			.header(TestConfigs.HEADER_PARAM_ORIGIN, TestConfigs.ORIGIN_ERUDIO)
 			.body(person)
-			.port(TestConfigs.SERVER_PORT)
+			.port(8080)
 			.when()
 			.post()
 			.then()
@@ -206,6 +206,7 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 		person.setLastName("Stallman");
 		person.setAddress("New York");
 		person.setGender("Male");
+		person.setEnabled(true);
 	}
 
 }
