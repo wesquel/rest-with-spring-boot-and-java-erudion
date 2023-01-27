@@ -1,5 +1,7 @@
 cors:
     originPatterns: http://localhost:8080,http://localhost:3000,http://erudio.com.br
+file:
+    upload-dir: /UploadDir
 security:
     jwt:
         token:
